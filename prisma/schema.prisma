@@ -22,14 +22,22 @@ model User {
   @@map("user")
 }
 
+enum PRODUCT_STATUS {
+  APPROVED
+  PENDING
+  REJECTED
+  REFUNDED
+  UNPAID
+}
+
 model Product {
-  id          String @id @default(uuid())
+  id          String         @id @default(uuid())
   title       String
   description String
   price       Float
   stock       Int
   items       Int
-  status      String
+  status      PRODUCT_STATUS
 
   orderId String?
   orders  Order?  @relation(fields: [orderId], references: [id])
