@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { UnauthorizedErrorInterceptor } from './common/errors/interceptors/unauthorized.interceptor';
 import { NotFoundErrorInterceptor } from './common/errors/interceptors/notfound.interceptor';
+import { ConflictErrorInterceptor } from './common/errors/interceptors/conflict.interceptor';
+import { DatabaseErrorInterceptor } from './common/errors/interceptors/database.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +16,8 @@ async function bootstrap() {
     }),
   );
 
+  app.useGlobalInterceptors(new ConflictErrorInterceptor());
+  app.useGlobalInterceptors(new DatabaseErrorInterceptor());
   app.useGlobalInterceptors(new UnauthorizedErrorInterceptor());
   app.useGlobalInterceptors(new NotFoundErrorInterceptor());
 
