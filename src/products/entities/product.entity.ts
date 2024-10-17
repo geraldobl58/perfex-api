@@ -10,5 +10,6 @@ export class ProductEntity implements Product {
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
+  categoryId: string;
   userId: string;
 }

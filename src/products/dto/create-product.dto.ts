@@ -26,5 +26,9 @@ export class CreateProductDto {
   status: boolean;
 
   @IsString()
+  @IsNotEmpty()
+  categoryId: string;
+
+  @IsString()
   userId: string;
 }
