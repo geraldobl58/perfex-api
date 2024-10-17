@@ -7,8 +7,8 @@ export class ProductEntity implements Product {
   price: number;
   stock: number;
   items: number;
-  status: string;
-  orderId: string;
+  status: boolean;
   createdAt: Date;
   updatedAt: Date;
+  userId: string;
 }

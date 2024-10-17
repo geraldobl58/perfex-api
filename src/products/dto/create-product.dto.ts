@@ -23,7 +23,8 @@ export class CreateProductDto {
 
   @IsBoolean()
   @IsNotEmpty()
-  status: string;
+  status: boolean;
 
-  orderId: string;
+  @IsString()
+  userId: string;
 }
