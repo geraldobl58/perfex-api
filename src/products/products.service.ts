@@ -11,8 +11,35 @@ export class ProductsService {
     return this.repository.create(createProductDto);
   }
 
-  findAll() {
-    return this.repository.findAll();
+  async findAll(query: { page: number; limit: number; title: string }) {
+    const { page = 1, limit = 10, title } = query;
+
+    const result = await this.repository.findAll();
+
+    let filteredProducts = result.data;
+
+    filteredProducts = filteredProducts.filter((post) => {
+      const matchesTitle = title
+        ? post.title.toLowerCase().includes(title.toLowerCase())
+        : true;
+
+      return matchesTitle;
+    });
+
+    const total = filteredProducts.length;
+
+    const startIndex = (page - 1) * limit;
+    const paginatedProducts = filteredProducts.slice(
+      startIndex,
+      startIndex + limit,
+    );
+
+    return {
+      total,
+      page,
+      limit,
+      data: paginatedProducts,
+    };
   }
 
   findOne(id: string) {
