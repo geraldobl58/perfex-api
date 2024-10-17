@@ -11,5 +11,4 @@ export class ProductEntity implements Product {
   createdAt: Date;
   updatedAt: Date;
   categoryId: string;
-  userId: string;
 }

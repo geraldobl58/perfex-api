@@ -18,7 +18,11 @@ export class ProductsRepository {
   }
 
   async findAll() {
-    const products = await this.prisma.product.findMany();
+    const products = await this.prisma.product.findMany({
+      include: {
+        category: true,
+      },
+    });
 
     return {
       data: products,
@@ -29,6 +33,9 @@ export class ProductsRepository {
     const product = await this.prisma.product.findUnique({
       where: {
         id,
+      },
+      include: {
+        category: true,
       },
     });
 

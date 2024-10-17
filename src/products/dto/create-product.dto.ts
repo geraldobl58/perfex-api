@@ -28,7 +28,4 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   categoryId: string;
-
-  @IsString()
-  userId: string;
 }

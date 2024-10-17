@@ -18,7 +18,11 @@ export class CategoriesRepository {
   }
 
   async findAll() {
-    const categories = await this.prisma.category.findMany();
+    const categories = await this.prisma.category.findMany({
+      include: {
+        products: true,
+      },
+    });
 
     return {
       data: categories,
