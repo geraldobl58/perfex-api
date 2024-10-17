@@ -18,9 +18,9 @@ export class ProductsService {
 
     let filteredProducts = result.data;
 
-    filteredProducts = filteredProducts.filter((post) => {
+    filteredProducts = filteredProducts.filter((product) => {
       const matchesTitle = title
-        ? post.title.toLowerCase().includes(title.toLowerCase())
+        ? product.title.toLowerCase().includes(title.toLowerCase())
         : true;
 
       return matchesTitle;
